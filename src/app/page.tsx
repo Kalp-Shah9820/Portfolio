@@ -1,8 +1,44 @@
+'use client';
 import Image from "next/image";
+import LiquidEther from "./component/LiquidEther";
+import Particles from "./component/Particles";
 
 export default function About() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden text-white bg-gradient-to-br from-indigo-900 via-purple-900 to-black">
+    <div className="relative min-h-screen w-full overflow-hidden text-white ">
+      {/* Particles Background */}
+      {/* <div className="absolute inset-0 -z-10 -z-10 pointer -events-auto">
+        <Particles
+          particleColors={['#ffffff', '#ffffff']}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}  
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div> */}
+
+      {/* Liquid Ether Background */}
+      <div className="absolute inset-0 -z-10 pointer-events-auto">
+        <LiquidEther
+          colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
+          mouseForce={50}
+          cursorSize={100}
+          isViscous={false}
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo={true}
+          autoSpeed={0.5}
+          autoIntensity={2.2}
+          takeoverDuration={0.25}
+          autoResumeDelay={3000}
+          autoRampDuration={0.6}
+        /> </div>
       {/* Page Content */}
       <main className="relative z-10 px-8 py-16 space-y-20">
         {/* Hero Section */}
@@ -82,7 +118,7 @@ export default function About() {
           <h2 className="text-4xl font-bold text-purple-400">🚀 My Vision</h2>
           <p className="text-slate-200 max-w-2xl mx-auto">
             To contribute to cutting-edge research in AI while building tools that make technology more
-            <span className="text-pink-400 font-semibold"> human-centered</span>, 
+            <span className="text-pink-400 font-semibold"> human-centered</span>, x``
             <span className="text-indigo-400 font-semibold"> accessible</span>, and 
             <span className="text-purple-400 font-semibold"> impactful</span>.
           </p>

@@ -1,40 +1,33 @@
 'use client';
 
-import LiquidEther from '../component/LiquidEther';
 import Image from 'next/image';
+import Particles from "../component/Particles"; // Make sure the path is correct
 
 export default function AboutPage() {
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden bg-black">
       
-      {/* LiquidEther Background */}
-      <div className="absolute inset-0 -z-10">
-        <LiquidEther
-          colors={['#5227FF', '#FF9FFC', '#B19EEF']}
-          mouseForce={20}
-          cursorSize={100}
-          isViscous={false}
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
-          isBounce={false}
-          autoDemo={true}
-          autoSpeed={0.5}
-          autoIntensity={2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
+      {/* Particles Background */}
+      <div className="absolute inset-0">
+        <Particles
+          particleColors={['#ffffff', '#ffffff']}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
         />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center text-white">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center text-white pointer-events-auto">
         
         {/* Profile Image */}
         <div className="w-40 h-40 rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg">
           <Image
-            src="/images/me.jpg" // replace with your profile image path
+            src="/images/me.jpeg" // replace with your profile image path
             alt="Profile Picture"
             width={160}
             height={160}
