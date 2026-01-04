@@ -38,16 +38,46 @@ const projects = [
 
 // Fetch Unsplash image for a given query
 async function getProjectImage(query: string) {
-  const res = await fetch(
-    `https://api.unsplash.com/photos/random?query=${query}&client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`,
-    { cache: "no-store" }
-  );
-
-  if (!res.ok) {
-    console.error("Failed to fetch image for:", query);
-    return null;
+  const apiKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
+  
+  if (!apiKey || apiKey === 'your_unsplash_api_key_here') {
+    console.warn("Unsplash API key not configured. Using placeholder images.");
+    return {
+      urls: {
+        small: `https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(query)}`,
+        regular: `https://via.placeholder.com/800x500/6366f1/ffffff?text=${encodeURIComponent(query)}`
+      },
+      alt_description: query
+    };
   }
-  return res.json();
+
+  try {
+    const res = await fetch(
+      `https://api.unsplash.com/photos/random?query=${query}&client_id=${apiKey}`,
+      { cache: "no-store" }
+    );
+
+    if (!res.ok) {
+      console.error("Failed to fetch image for:", query);
+      return {
+        urls: {
+          small: `https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(query)}`,
+          regular: `https://via.placeholder.com/800x500/6366f1/ffffff?text=${encodeURIComponent(query)}`
+        },
+        alt_description: query
+      };
+    }
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching image:", error);
+    return {
+      urls: {
+        small: `https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(query)}`,
+        regular: `https://via.placeholder.com/800x500/6366f1/ffffff?text=${encodeURIComponent(query)}`
+      },
+      alt_description: query
+    };
+  }
 }
 
 export default async function Projects() {
